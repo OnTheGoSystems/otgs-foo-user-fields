@@ -50,13 +50,18 @@ class UserProfileScreen {
 
 		$fields = get_option( ManageFieldsScreen::OPTION_NAME, [] );
 
+		do_action( 'otgs_foo_user_fields_user_save_start', $userId );
+
 		foreach ( $fields as $fieldLabel ) {
 			$fieldKey = sanitize_key( $fieldLabel );
 
 			if ( isset( $_POST[ self::FIELD_PREFIX . $fieldKey ] ) ) {
 				$fieldValue = sanitize_text_field( $_POST[ self::FIELD_PREFIX . $fieldKey ] );
 				update_user_meta( $userId, $fieldKey, $fieldValue );
+				do_action( 'otgs_foo_user_fields_user_save_field', $fieldValue, $fieldLabel, $userId );
 			}
 		}
+
+		do_action( 'otgs_foo_user_fields_user_save_end', $userId );
 	}
 }

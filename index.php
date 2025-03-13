@@ -15,6 +15,7 @@ add_action( 'init', function() {
 		OTGS\FooUserFields\ManageFieldsScreen::class,
 		OTGS\FooUserFields\UserProfileScreen::class,
 		OTGS\FooUserFields\FrontendAuthorPage::class,
+		OTGS\FooUserFields\WPMLIntegration::class,
 	];
 
 	foreach ( $classes as $class ) {

@@ -24,6 +24,7 @@ class FrontendAuthorPage {
 				$fieldValue = get_user_meta( $author->ID, $fieldKey, true );
 
 				if ( $fieldValue ) {
+					$fieldValue    = apply_filters( 'otgs_foo_user_fields_display_value', $fieldValue, $fieldLabel, $author->ID );
 					$extraContent .= '<p><b>' . esc_html( $fieldLabel ) . ':</b> ' . esc_html( $fieldValue ) . '</p>';
 				}
 			}
