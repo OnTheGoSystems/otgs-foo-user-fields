@@ -24,8 +24,9 @@ class FrontendAuthorPage {
 				$fieldValue = get_user_meta( $author->ID, $fieldKey, true );
 
 				if ( $fieldValue ) {
-					$fieldValue    = apply_filters( 'otgs_foo_user_fields_display_value', $fieldValue, $fieldLabel, $author->ID );
-					$extraContent .= '<p><b>' . esc_html( $fieldLabel ) . ':</b> ' . esc_html( $fieldValue ) . '</p>';
+					$filteredFieldLabel    = apply_filters( 'otgs_foo_user_fields_display_value', $fieldLabel, $fieldLabel, ManageFieldsScreen::LABELS_USER_ID );
+					$filteredFieldValue    = apply_filters( 'otgs_foo_user_fields_display_value', $fieldValue, $fieldLabel, $author->ID );
+					$extraContent .= '<p><b>' . esc_html( $filteredFieldLabel ) . ':</b> ' . esc_html( $filteredFieldValue ) . '</p>';
 				}
 			}
 

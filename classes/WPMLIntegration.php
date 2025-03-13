@@ -85,18 +85,23 @@ class WPMLIntegration {
 	}
 
 	/**
-	 * @param int $userId
+	 * @param int|string $userId
 	 *
 	 * @return array
 	 */
 	private function getUserFieldPackage( $userId ) {
-		$user = get_user_by( 'id', $userId );
+		$userName = $userId;
+
+		if ( is_numeric( $userId ) ) {
+			$user     = get_user_by( 'id', $userId );
+			$userName = $user->display_name ?? "User #$userId";
+		}
 
 		return [
 			'kind_slug' => self::USER_PACKAGE_KIND_SLUG,
 			'kind'      => self::USER_PACKAGE_KIND_TITLE,
 			'name'      => $userId,
-			'title'     => $user->display_name ?? "User #$userId",
+			'title'     => $userName,
 		];
 	}
 }
